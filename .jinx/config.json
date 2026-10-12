@@ -1,0 +1,9 @@
+{
+  "srcRoot": "./nixpkgs",
+  "nixpkgs": {
+    "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
+    "narHash": "sha256-XK4KceonkwD8LuMAt/vNrz982mXJM5jeHAxMwsUXXAQ=",
+    "url": "github:NixOS/nixpkgs/6510408d147d8c5e6d76043e899e9251756f6a75"
+  },
+  "jinx": "9c59ab443f62799e83c29da473f9105584398370"
+}
