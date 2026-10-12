@@ -2,10 +2,44 @@
 
 nixpkgs, transpiled to TypeScript by [jinx](https://github.com/fzakaria/jinx).
 
-Every `.nix` file of one nixpkgs revision is here as a `.ts` module in the
+## Status
+
+nixpkgs [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75), compiled by jinx [8b926a9](https://github.com/fzakaria/jinx/commit/8b926a9891a396120601acc04460c897ba90495b)
+on 2026-10-12.
+
+Parity with Nix: every attribute of nixpkgs' `ci/eval/outpaths.nix` for
+aarch64-darwin, aarch64-linux, x86_64-linux, evaluated with nix-eval-jobs and with jinx,
+drvPath against drvPath.
+
+| outcome | attributes |
+| --- | --- |
+| identical | 229,063 |
+| both fail | 2,714 |
+| differ | 0 |
+| jinx fails, Nix does not | 0 |
+| Nix fails, jinx does not | 0 |
+
+The attribute-by-attribute result is `parity/joined.tsv.gz` and the
+summary [parity/report.md](parity/report.md); the method is jinx's
+docs/verification.md.
+
+## History
+
+One row per published revision, newest first.
+
+| date | nixpkgs | jinx | attributes | identical | both fail | differ | one side |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-10-12 | [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75) | [8b926a9](https://github.com/fzakaria/jinx/commit/8b926a9891a396120601acc04460c897ba90495b) | 231,777 | 229,063 | 2,714 | 0 | 0 |
+
+## Layout
+
+Every `.nix` file of the nixpkgs revision is here as a `.ts` module in the
 same place in the tree, with a source map beside it pointing back at the
 Nix. `.jinx/config.json` names the revision; `.jinx/runtime/` is the jinx
-runtime the modules import, so the tree stands alone.
+runtime the modules import, so the tree stands alone. `.jinx/tree-index.json`
+and `.jinx/src-index.json` list every path of the tree and of the nixpkgs
+source, for a reader that fetches files one at a time (jinx.dev's nixpkgs
+page).
 
 The Nix source tree is not in this repository. Put a checkout of the
 revision in `.jinx/config.json` at `./nixpkgs` (a symlink is fine); the

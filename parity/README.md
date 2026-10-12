@@ -4,4 +4,5 @@
 `ci/eval/outpaths.nix` with nix-eval-jobs and with jinx on this revision
 and comparing drvPaths (jinx's docs/verification.md). `joined.tsv.gz` has
 one line per attribute: the attribute path as JSON, Nix's drvPath or
-`ERROR: <message>`, and jinx's.
+`ERROR: <message>`, and jinx's. `history.json` has the counts of every
+revision published so far, which the README's history table shows.

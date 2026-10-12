@@ -1,0 +1,18 @@
+[
+  {
+    "date": "2026-10-12",
+    "nixpkgs": "6510408d147d8c5e6d76043e899e9251756f6a75",
+    "jinx": "8b926a9891a396120601acc04460c897ba90495b",
+    "systems": [
+      "aarch64-darwin",
+      "aarch64-linux",
+      "x86_64-linux"
+    ],
+    "attributes": 231777,
+    "identical": 229063,
+    "bothError": 2714,
+    "differ": 0,
+    "jinxError": 0,
+    "nixError": 0
+  }
+]
